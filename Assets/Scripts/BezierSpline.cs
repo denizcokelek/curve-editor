@@ -1,9 +1,10 @@
+using System;
 using UnityEngine;
 using Vector3 = UnityEngine.Vector3;
 
 namespace Project
 {
-    public class BezierCurve : MonoBehaviour
+    public class BezierSpline : MonoBehaviour
     {
         public Vector3[] Points;
 
@@ -16,6 +17,19 @@ namespace Project
                 new Vector3(3f, 0, 0),
                 new Vector3(4f, 0, 0),
             };
+        }
+
+        public void AddCurve()
+        {
+            Vector3 point = Points[Points.Length - 1];
+
+            Array.Resize(ref Points, Points.Length +3);
+
+            for (int i = 0; i < 3; i++)
+            {
+                point.x += 1;
+                Points[Points.Length - (3 - i)] = point;
+            }
         }
 
         #region Quadratic Curves
@@ -43,29 +57,29 @@ namespace Project
 
         #region Cube Curbes
 
-        public Vector3 GetCubicCurvePoint(float t)
+        public Vector3 GetCubicCurvePoint(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
         {
             t = Mathf.Clamp01(t);
             float oneMinusT = 1 - t;
 
-            Vector3 point = oneMinusT * oneMinusT * oneMinusT * Points[0] +
-                            3f * oneMinusT * oneMinusT * t * Points[1] +
-                            3f * oneMinusT * t * t * Points[2] +
-                            t * t * t * Points[3];
+            Vector3 point = oneMinusT * oneMinusT * oneMinusT * p0 +
+                            3f * oneMinusT * oneMinusT * t * p1 +
+                            3f * oneMinusT * t * t * p2 +
+                            t * t * t * p3;
 
-            return transform.TransformPoint(point);
+            return point;
         }
 
-        public Vector3 GetCubicCurveVelocity(float t)
+        public Vector3 GetCubicCurveVelocity(Vector3 p0, Vector3 p1, Vector3 p2, Vector3 p3, float t)
         {
             t = Mathf.Clamp01(t);
             float oneMinusT = 1 - t;
 
-            Vector3 point = 3f * oneMinusT * oneMinusT * (Points[1] - Points[0]) +
-                            6f * oneMinusT * t * (Points[2] - Points[1]) +
-                            3 * t * t * (Points[3] - Points[2]);
+            Vector3 point = 3f * oneMinusT * oneMinusT * (p1 - p0) +
+                            6f * oneMinusT * t * (p2 - p1) +
+                            3 * t * t * (p3 - p2);
 
-            return transform.TransformPoint(point).normalized;
+            return point.normalized;
         }
 
         #endregion
