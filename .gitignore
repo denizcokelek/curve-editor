@@ -69,3 +69,7 @@ UserSettings/EditorUserSettings.asset
 Packages/
 
 ProjectSettings/
+
+Assembly-CSharp-Editor.csproj.DotSettings
+
+Assembly-CSharp.csproj.DotSettings
