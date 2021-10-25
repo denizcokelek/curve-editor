@@ -6,6 +6,6 @@ namespace Project
 {
     public class Line : MonoBehaviour
     {
-        public Vector3 Point1, Point2;
+        public Vector3 Point0, Point1;
     }
 }

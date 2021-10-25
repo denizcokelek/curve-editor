@@ -14,29 +14,29 @@ namespace Project.Editor
             Transform lineTransform = line.transform;
             Quaternion lineRotation = lineTransform.rotation;
             //Quaternion lineRotation = Tools.pivotRotation == PivotRotation.Local ? lineTransform.rotation : Quaternion.identity; //??????
+            Vector3 point0 = lineTransform.TransformPoint(line.Point0);
             Vector3 point1 = lineTransform.TransformPoint(line.Point1);
-            Vector3 point2 = lineTransform.TransformPoint(line.Point2);
             
             Handles.color = Color.white;
-            Handles.DrawLine(point1, point2);
+            Handles.DrawLine(point0, point1);
 
+            Handles.DoPositionHandle(point0, lineRotation);
             Handles.DoPositionHandle(point1, lineRotation);
-            Handles.DoPositionHandle(point2, lineRotation);
-
+                
+            line.Point0 = lineTransform.InverseTransformPoint(point0);
             line.Point1 = lineTransform.InverseTransformPoint(point1);
-            line.Point2 = lineTransform.InverseTransformPoint(point2);
 
             //EditorGUI.BeginChangeCheck();
             //
             //if (EditorGUI.EndChangeCheck())
             //{
-            //    line.Point1 = lineTransform.InverseTransformPoint(point1);
+            //    line.Point0 = lineTransform.InverseTransformPoint(point0);
             //}
             //EditorGUI.BeginChangeCheck();
-            //Handles.DoPositionHandle(point2, lineRotation);
+            //Handles.DoPositionHandle(point1, lineRotation);
             //if (EditorGUI.EndChangeCheck())
             //{
-            //    line.Point2 = lineTransform.InverseTransformPoint(point2);
+            //    line.Point1 = lineTransform.InverseTransformPoint(point1);
             //}
         }
     }
