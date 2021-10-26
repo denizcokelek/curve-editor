@@ -46,7 +46,7 @@ namespace Project
 
         #endregion
 
-        #region Cube Curve
+        #region Cubic Curve
 
         public Vector3 GetCubicCurvePoint(float t)
         {
