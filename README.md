@@ -1,5 +1,5 @@
 # curve-editor
-Simple Bézier curve creator
+Simple Bézier curve creator. Project also includes 1 example for the quadratic curve.
 <br>
 ### Quadratic Bézier Curve
 ------------
