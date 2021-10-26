@@ -12,15 +12,14 @@ namespace Project
             Points = new Vector3[]
             {
                 new Vector3(1f, 0, 0),
-                new Vector3(2f, 0, 0),
+                new Vector3(2f, 0, 1.5f),
                 new Vector3(3f, 0, 0),
-                new Vector3(4f, 0, 0),
             };
         }
 
-        #region Quadratic Curves
+        #region Quadratic Curve
 
-            public Vector3 GetCurvePoint(float t)
+            public Vector3 GetPointAtCurve(float t)
             {
                 t = Mathf.Clamp01(t);
                 float oneMinusT = 1 - t;
@@ -32,16 +31,18 @@ namespace Project
                 return transform.TransformPoint(point);
             }
 
-            public Vector3 GetVelocity(float t)
+            public Vector3 GetDirection(float t)
             {
-                Vector3 velocity = 2 * (t - 1) * (Points[0] - Points[1]) + 2 * t * (Points[2] - Points[1]) - transform.position;
+                Vector3 velocity = 2 * (t - 1) * (Points[0] - Points[1]) + 
+                                   2 * t * (Points[2] - Points[1]) - 
+                                   transform.position;
 
                 return transform.TransformPoint(velocity).normalized;
             }
 
         #endregion
 
-        #region Cube Curbes
+        #region Cube Curve
 
         public Vector3 GetCubicCurvePoint(float t)
         {
