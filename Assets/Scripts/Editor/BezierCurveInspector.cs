@@ -40,7 +40,7 @@ namespace Project
 
         private Vector3 ShowPoint(int index)
         {
-            Vector3 point = _bezierTransform.TransformPoint(_bezierCurve.Points[index]);
+            Vector3 point = _bezierTransform.TransformPoint(_bezierCurve.GetPoint(index));
             Handles.DoPositionHandle(point, _bezierTransform.rotation);
 
             return point;

@@ -1,15 +1,19 @@
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 namespace Project
 {
     public class BezierCurve : MonoBehaviour
     {
-        public Vector3[] Points;
+        [SerializeField]
+        private Vector3[] _points;
+
+        public Vector3 GetPoint (int index) {
+            return _points[index];
+        }
 
         public void Reset()
         {
-            Points = new Vector3[]
+            _points = new Vector3[]
             {
                 new Vector3(1f, 0, 0),
                 new Vector3(2f, 0, 1.5f),
@@ -24,17 +28,17 @@ namespace Project
                 t = Mathf.Clamp01(t);
                 float oneMinusT = 1 - t;
 
-                Vector3 point = oneMinusT * oneMinusT * Points[0] + 
-                                2 * oneMinusT * t * Points[1] +
-                                t * t * Points[2];
+                Vector3 point = oneMinusT * oneMinusT * _points[0] + 
+                                2 * oneMinusT * t * _points[1] +
+                                t * t * _points[2];
 
                 return transform.TransformPoint(point);
             }
 
             public Vector3 GetDirection(float t)
             {
-                Vector3 velocity = 2 * (t - 1) * (Points[0] - Points[1]) + 
-                                   2 * t * (Points[2] - Points[1]) - 
+                Vector3 velocity = 2 * (t - 1) * (_points[0] - _points[1]) + 
+                                   2 * t * (_points[2] - _points[1]) - 
                                    transform.position;
 
                 return transform.TransformPoint(velocity).normalized;
@@ -49,10 +53,10 @@ namespace Project
             t = Mathf.Clamp01(t);
             float oneMinusT = 1 - t;
 
-            Vector3 point = oneMinusT * oneMinusT * oneMinusT * Points[0] +
-                            3f * oneMinusT * oneMinusT * t * Points[1] +
-                            3f * oneMinusT * t * t * Points[2] +
-                            t * t * t * Points[3];
+            Vector3 point = oneMinusT * oneMinusT * oneMinusT * _points[0] +
+                            3f * oneMinusT * oneMinusT * t * _points[1] +
+                            3f * oneMinusT * t * t * _points[2] +
+                            t * t * t * _points[3];
 
             return transform.TransformPoint(point);
         }
@@ -62,9 +66,9 @@ namespace Project
             t = Mathf.Clamp01(t);
             float oneMinusT = 1 - t;
 
-            Vector3 point = 3f * oneMinusT * oneMinusT * (Points[1] - Points[0]) +
-                            6f * oneMinusT * t * (Points[2] - Points[1]) +
-                            3 * t * t * (Points[3] - Points[2]);
+            Vector3 point = 3f * oneMinusT * oneMinusT * (_points[1] - _points[0]) +
+                            6f * oneMinusT * t * (_points[2] - _points[1]) +
+                            3 * t * t * (_points[3] - _points[2]);
 
             return transform.TransformPoint(point).normalized;
         }
