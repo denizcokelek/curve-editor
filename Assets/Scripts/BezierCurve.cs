@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace Project
@@ -9,6 +10,11 @@ namespace Project
 
         public Vector3 GetPoint (int index) {
             return _points[index];
+        }
+
+        private void Awake()
+        {
+            Reset();
         }
 
         public void Reset()

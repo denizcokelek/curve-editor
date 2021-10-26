@@ -8,7 +8,7 @@ namespace Project
     {
         private BezierCurve _bezierCurve;
         private Transform _bezierTransform;
-        private const int LINESTEPS = 30;
+        private const int LINESTEPS = 10;
 
         private void OnSceneGUI()
         {
