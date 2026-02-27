@@ -2,7 +2,6 @@
 
 A production-ready spline system for Unity featuring arc-length parameterization, rotation-minimizing frames, and a clean runtime/editor separation.
 
-<!-- TODO: Replace with actual recording -->
 ![Spline Framework Demo](docs/images/hero-demo.gif)
 
 ## Features
@@ -20,8 +19,7 @@ Most spline tutorials use parameter-based evaluation (`Evaluate(t)`), which prod
 
 This framework solves the problem with **arc-length parameterization**:
 
-<!-- TODO: Replace with actual recording showing side-by-side comparison -->
-![Even Spacing Comparison](docs/images/spacing-comparison.gif)
+![Even Spacing Comparison](docs/images/spacing-comparison.png)
 
 | Method | Result |
 |--------|--------|
@@ -31,9 +29,6 @@ This framework solves the problem with **arc-length parameterization**:
 ## Stable Orientation with Rotation-Minimizing Frames
 
 The classic Frenet frame (TNB) **flips 180°** at inflection points, causing objects to suddenly invert. This framework implements the **Double Reflection Method** for stable orientation:
-
-<!-- TODO: Replace with actual recording showing Frenet flip vs RMF stability -->
-![Frame Mode Comparison](docs/images/frame-comparison.gif)
 
 | Frame Mode | Behavior |
 |------------|----------|
@@ -52,18 +47,15 @@ Supports multiple interpolation methods with the same API:
 
 Full Unity Editor tooling with scene handles, visualization options, and inspector controls:
 
-<!-- TODO: Replace with actual screenshot of editor -->
-![Editor Screenshot](docs/images/editor-screenshot.png)
-
 ## Installation
 
-1. Copy the `Assets/01_Scripts/Splines` folder into your Unity project
+1. Copy the `Assets/Scripts/Splines` folder into your Unity project
 2. Unity will compile the assembly definitions automatically
 
 ### Folder Structure
 
 ```
-Assets/01_Scripts/Splines/
+Assets/Scripts/Splines/
 ├── Runtime/
 │   ├── Core/           # Interfaces and data structures
 │   ├── Segments/       # Curve type implementations
@@ -492,7 +484,3 @@ Assembly Separation:
   • FrameComputation.cs           │
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 ```
-
-## License
-
-MIT License
